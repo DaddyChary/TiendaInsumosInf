@@ -6,8 +6,7 @@ USE tienda_insumos_inf;
 
 CREATE TABLE IF NOT EXISTS tienda(
     id INT PRIMARY KEY AUTO_INCREMENT,
-    nombre VARCHAR(255) NOT NULL,
-    cantidad_estanterias INT NOT NULL
+    nombre VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS estanterias(
@@ -36,6 +35,7 @@ CREATE TABLE IF NOT EXISTS inventario(
 CREATE TABLE IF NOT EXISTS ventas(
     id INT PRIMARY KEY AUTO_INCREMENT,
     cantidad INT NOT NULL,
+    fecha DATE NOT NULL,
     total DECIMAL (10,2) NOT NULL
 );
 
@@ -43,7 +43,6 @@ CREATE TABLE IF NOT EXISTS detalle_venta(
     id INT PRIMARY KEY AUTO_INCREMENT,
     id_venta_fk INT NOT NULL,
     id_producto_fk INT NOT NULL,
-    fecha DATE NOT NULL,
     FOREIGN KEY (id_venta_fk) REFERENCES ventas(id),
     FOREIGN KEY (id_producto_fk) REFERENCES productos(id)
 );

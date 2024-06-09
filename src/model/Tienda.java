@@ -9,7 +9,7 @@ package model;
  * @author DaddyChary
  */
 public class Tienda {
-    
+
     private int id;
     private String nombre;
     private int cantidadEstantes;
@@ -25,6 +25,10 @@ public class Tienda {
 
     public int getId() {
         return id;
+    }
+
+    public String getIdString() {
+        return String.valueOf(id);
     }
 
     public void setId(int id) {
@@ -51,7 +55,5 @@ public class Tienda {
     public String toString() {
         return "Tienda{" + "id=" + id + ", nombre=" + nombre + ", cantidadEstantes=" + cantidadEstantes + '}';
     }
-    
-    
-    
+
 }

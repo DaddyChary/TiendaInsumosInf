@@ -4,6 +4,8 @@
  */
 package model;
 
+import java.util.Date;
+
 /**
  *
  * @author DaddyChary
@@ -12,14 +14,16 @@ public class Venta {
     
     private int id;
     private int cantidad;
+    private Date fecha;
     private float totalVenta;
 
     public Venta() {
     }
 
-    public Venta(int id, int cantidad, float totalVenta) {
+    public Venta(int id, int cantidad, Date fecha, float totalVenta) {
         this.id = id;
         this.cantidad = cantidad;
+        this.fecha = fecha;
         this.totalVenta = totalVenta;
     }
 
@@ -39,6 +43,14 @@ public class Venta {
         this.cantidad = cantidad;
     }
 
+    public Date getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
+    }
+
     public float getTotalVenta() {
         return totalVenta;
     }
@@ -49,10 +61,9 @@ public class Venta {
 
     @Override
     public String toString() {
-        return "Venta{" + "id=" + id + ", cantidad=" + cantidad + ", totalVenta=" + totalVenta + '}';
+        return "Venta{" + "id=" + id + ", cantidad=" + cantidad + ", fecha=" + fecha + ", totalVenta=" + totalVenta + '}';
     }
 
         
-    
     
 }

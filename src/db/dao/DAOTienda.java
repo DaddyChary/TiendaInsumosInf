@@ -15,29 +15,29 @@ import model.Tienda;
  *
  * @author DaddyChary
  */
-public class DAOTienda implements DAO<Tienda>{
+public class DAOTienda implements DAO<Tienda> {
 
     private Conexion conn;
 
     public DAOTienda(Conexion conn) {
         this.conn = conn;
     }
-    
+
     @Override
     public void create(Tienda t) throws SQLException {
-        String sql = "INSERT INTO tienda (id, nombre, cantidad_estanterias) VALUES (null, '"+ t.getNombre() +"', "+ t.getCantidadEstantes() +");";
+        String sql = "INSERT INTO tienda (id, nombre) VALUES (null, '" + t.getNombre() + "');";
         conn.execute(sql);
     }
 
     @Override
     public void update(Tienda t) throws SQLException {
-        String sql = "UPDATE tienda SET nombre = '"+ t.getNombre() +"', cantidad_estanterias = "+ t.getCantidadEstantes() +" WHERE id = "+ t.getId() +"";
+        String sql = "UPDATE tienda SET nombre = '" + t.getNombre() + "', cantidad_estanterias = " + t.getCantidadEstantes() + " WHERE id = " + t.getId() + "";
         conn.execute(sql);
     }
 
     @Override
     public void delete(Tienda t) throws SQLException {
-        String sql = "DELETE FORM tienda WHERE id = "+ t.getId() +"";
+        String sql = "DELETE FORM tienda WHERE id = " + t.getId() + "";
         conn.execute(sql);
     }
 
@@ -57,7 +57,7 @@ public class DAOTienda implements DAO<Tienda>{
 
     @Override
     public List<Tienda> getAll() throws SQLException {
-         String sql = "SELECT * FROM tienda";
+        String sql = "SELECT * FROM tienda";
         ResultSet rs = conn.execute(sql);
         List<Tienda> listaTienda = new ArrayList<>();
         while (rs.next()) {
@@ -70,6 +70,28 @@ public class DAOTienda implements DAO<Tienda>{
         conn.close();
         return listaTienda;
     }
-    
-    
+
+    public List<String> getIdTienda() throws SQLException {
+        String sql = "SELECT DISTINCT id FROM tienda ";
+        ResultSet rs = conn.execute(sql);
+        List<String> listaIdTienda = new ArrayList<>();
+        while (rs.next()) {
+            String idTienda = rs.getString("id");
+            listaIdTienda.add(idTienda);
+        }
+        conn.close();
+        return listaIdTienda;
+    }
+
+    public List<Integer> getIdTiendaInt() throws SQLException {
+        String sql = "SELECT DISTINCT id FROM tienda ";
+        ResultSet rs = conn.execute(sql);
+        List<Integer> listaIdTienda = new ArrayList<>();
+        while (rs.next()) {
+            int idTienda = rs.getInt("id");
+            listaIdTienda.add(idTienda);
+        }
+        conn.close();
+        return listaIdTienda;
+    }
 }

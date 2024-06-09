@@ -27,6 +27,10 @@ public class Estanteria {
         return id;
     }
 
+    public String getIdString() {
+        return String.valueOf(id);
+    }
+    
     public void setId(int id) {
         this.id = id;
     }
@@ -35,12 +39,20 @@ public class Estanteria {
         return id_tienda_fk;
     }
 
+    public String getId_tienda_fk_String() {
+        return String.valueOf(id_tienda_fk);
+    }
+    
     public void setId_tienda_fk(int id_tienda_fk) {
         this.id_tienda_fk = id_tienda_fk;
     }
 
     public int getTiempo_descuento() {
         return tiempoDescuento;
+    }
+    
+    public String getTiempo_descuento_String() {
+        return String.valueOf(tiempoDescuento);
     }
 
     public void setTiempo_descuento(int tiempo_descuento) {

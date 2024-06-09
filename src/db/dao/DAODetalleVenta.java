@@ -25,13 +25,13 @@ public class DAODetalleVenta implements DAO<DetalleVenta> {
 
     @Override
     public void create(DetalleVenta t) throws SQLException {
-        String sql = "INSERT INTO detalle_venta (id, id_venta_fk, id_producto_fk, fecha) VALUES (null, "+ t.getId_venta_fk() +", "+ t.getId_producto_fk()+", "+ t.getFecha() +")";
+        String sql = "INSERT INTO detalle_venta (id, id_venta_fk, id_producto_fk, fecha) VALUES (null, "+ t.getId_venta_fk() +", "+ t.getId_producto_fk()+")";
         conn.execute(sql);
     }
 
     @Override
     public void update(DetalleVenta t) throws SQLException {
-        String sql = "UPDATE detalle_venta SET id_venta_fk = "+ t.getId_producto_fk() +", id_producto_fk = "+ t.getId_producto_fk() +", fecha = "+ t.getFecha() +"";
+        String sql = "UPDATE detalle_venta SET id_venta_fk = "+ t.getId_producto_fk() +", id_producto_fk = "+ t.getId_producto_fk() +"";
         conn.execute(sql);
     }
 
@@ -50,7 +50,6 @@ public class DAODetalleVenta implements DAO<DetalleVenta> {
             detalle_venta.setId(rs.getInt("id"));
             detalle_venta.setId_venta_fk(rs.getInt("id_venta_fk"));
             detalle_venta.setId_producto_fk(rs.getInt("id_producto_fk"));
-            detalle_venta.setFecha(rs.getDate("fecha"));
         }
         conn.close();
         return detalle_venta;
@@ -66,7 +65,6 @@ public class DAODetalleVenta implements DAO<DetalleVenta> {
             detalle_venta.setId(rs.getInt("id"));
             detalle_venta.setId_venta_fk(rs.getInt("id_venta_fk"));
             detalle_venta.setId_producto_fk(rs.getInt("id_producto_fk"));
-            detalle_venta.setFecha(rs.getDate("fecha"));
             listaDetalle_Venta.add(detalle_venta);
         }
         conn.close();

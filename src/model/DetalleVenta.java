@@ -15,16 +15,14 @@ public class DetalleVenta {
     private int id;
     private int id_venta_fk;
     private int id_producto_fk;
-    private Date fecha;
 
     public DetalleVenta() {
     }
 
-    public DetalleVenta(int id, int id_venta_fk, int id_producto_fk, Date fecha) {
+    public DetalleVenta(int id, int id_venta_fk, int id_producto_fk) {
         this.id = id;
         this.id_venta_fk = id_venta_fk;
         this.id_producto_fk = id_producto_fk;
-        this.fecha = fecha;
     }
 
     public int getId() {
@@ -51,17 +49,9 @@ public class DetalleVenta {
         this.id_producto_fk = id_producto_fk;
     }
 
-    public Date getFecha() {
-        return fecha;
-    }
-
-    public void setFecha(Date fecha) {
-        this.fecha = fecha;
-    }
-
     @Override
     public String toString() {
-        return "Detalle_Venta{" + "id=" + id + ", id_venta_fk=" + id_venta_fk + ", id_producto_fk=" + id_producto_fk + ", fecha=" + fecha + '}';
+        return "DetalleVenta{" + "id=" + id + ", id_venta_fk=" + id_venta_fk + ", id_producto_fk=" + id_producto_fk + '}';
     }
 
     

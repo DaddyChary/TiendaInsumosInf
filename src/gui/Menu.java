@@ -15,14 +15,15 @@ import java.util.logging.Logger;
 public class Menu extends javax.swing.JFrame {
 
     private ProductosModule productosModule;
+    private InventarioModule inventario;
+    private Asignacion asignacion;
+    private GenerarInforme informes;
     
-    /**
-     * Creates new form App
-     */
+    
     public Menu() throws SQLException {
         initComponents();
         setProperties();
-        productosModule = new ProductosModule();
+
     }
 
     /**
@@ -36,62 +37,146 @@ public class Menu extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
+        btn_close = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         btn_join_productos = new javax.swing.JButton();
-        btn_close = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        btn_inventario = new javax.swing.JButton();
+        btn_reportes = new javax.swing.JButton();
+        btn_asigancion_estanteria = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Menu");
+        jPanel2.setBackground(new java.awt.Color(4, 6, 36));
 
-        btn_join_productos.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
-        btn_join_productos.setText("Productos");
-        btn_join_productos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_join_productosActionPerformed(evt);
-            }
-        });
-
+        btn_close.setBackground(new java.awt.Color(4, 6, 36));
+        btn_close.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btn_close.setForeground(new java.awt.Color(255, 153, 51));
         btn_close.setText("Cerrar");
+        btn_close.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.magenta, java.awt.Color.cyan, java.awt.Color.blue, java.awt.Color.red));
         btn_close.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_closeActionPerformed(evt);
             }
         });
 
-        jButton3.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
-        jButton3.setText("Inventario");
+        jPanel3.setBackground(new java.awt.Color(4, 6, 36));
+        jPanel3.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.yellow, java.awt.Color.red, java.awt.Color.magenta, java.awt.Color.cyan));
+        jPanel3.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel3.setEnabled(false);
+
+        jLabel1.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 153, 51));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Menu");
+        jLabel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.green, java.awt.Color.orange, java.awt.Color.blue, java.awt.Color.magenta));
+
+        btn_join_productos.setBackground(new java.awt.Color(4, 6, 36));
+        btn_join_productos.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        btn_join_productos.setForeground(new java.awt.Color(255, 153, 51));
+        btn_join_productos.setText("Productos");
+        btn_join_productos.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.green, java.awt.Color.orange, java.awt.Color.blue, java.awt.Color.magenta));
+        btn_join_productos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_join_productosActionPerformed(evt);
+            }
+        });
+
+        btn_inventario.setBackground(new java.awt.Color(4, 6, 36));
+        btn_inventario.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        btn_inventario.setForeground(new java.awt.Color(255, 153, 51));
+        btn_inventario.setText("Inventario");
+        btn_inventario.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.green, java.awt.Color.orange, java.awt.Color.blue, java.awt.Color.magenta));
+        btn_inventario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_inventarioActionPerformed(evt);
+            }
+        });
+
+        btn_reportes.setBackground(new java.awt.Color(4, 6, 36));
+        btn_reportes.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        btn_reportes.setForeground(new java.awt.Color(255, 153, 51));
+        btn_reportes.setText("Reportes");
+        btn_reportes.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.green, java.awt.Color.orange, java.awt.Color.blue, java.awt.Color.magenta));
+        btn_reportes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_reportesActionPerformed(evt);
+            }
+        });
+
+        btn_asigancion_estanteria.setBackground(new java.awt.Color(4, 6, 36));
+        btn_asigancion_estanteria.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        btn_asigancion_estanteria.setForeground(new java.awt.Color(255, 153, 51));
+        btn_asigancion_estanteria.setText("Asignacion Estanteria");
+        btn_asigancion_estanteria.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.green, java.awt.Color.orange, java.awt.Color.blue, java.awt.Color.magenta));
+        btn_asigancion_estanteria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_asigancion_estanteriaActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(95, 95, 95)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(96, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btn_reportes, javax.swing.GroupLayout.PREFERRED_SIZE, 395, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_join_productos, javax.swing.GroupLayout.PREFERRED_SIZE, 395, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_inventario, javax.swing.GroupLayout.PREFERRED_SIZE, 395, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_asigancion_estanteria, javax.swing.GroupLayout.PREFERRED_SIZE, 395, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(14, 14, 14))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(44, 44, 44)
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
+                .addComponent(btn_join_productos, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btn_inventario, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
+                .addComponent(btn_asigancion_estanteria, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btn_reportes, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(23, 23, 23))
+        );
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/logoProyectoNuevo.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btn_join_productos, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 472, Short.MAX_VALUE)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btn_close, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap(14, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(50, 50, 50))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btn_close, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(21, 21, 21))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btn_close)
+                .addGap(32, 32, 32)
+                .addComponent(btn_close, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel1)
-                .addGap(28, 28, 28)
-                .addComponent(btn_join_productos, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(589, Short.MAX_VALUE))
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 392, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -119,14 +204,21 @@ public class Menu extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_join_productosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_join_productosActionPerformed
-        // TODO add your handling code here:
+        try {
+            // TODO add your handling code here:
+            productosModule = new ProductosModule();
+        } catch (SQLException ex) {
+            Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
+        }
         this.setVisible(false);
         productosModule.setVisible(true);
     }//GEN-LAST:event_btn_join_productosActionPerformed
@@ -134,6 +226,40 @@ public class Menu extends javax.swing.JFrame {
     private void btn_closeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_closeActionPerformed
         System.exit(0);
     }//GEN-LAST:event_btn_closeActionPerformed
+
+    private void btn_inventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_inventarioActionPerformed
+        try {
+            // TODO add your handling code here:
+            inventario = new InventarioModule();
+        } catch (SQLException ex) {
+            Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        this.setVisible(false);
+        inventario.setVisible(true);
+    }//GEN-LAST:event_btn_inventarioActionPerformed
+
+    private void btn_reportesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_reportesActionPerformed
+        
+        // TODO add your handling code here:
+        informes = new GenerarInforme();
+        this.setVisible(false);
+        informes.setVisible(true);
+        
+    }//GEN-LAST:event_btn_reportesActionPerformed
+
+    private void btn_asigancion_estanteriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_asigancion_estanteriaActionPerformed
+        // TODO add your handling code here:
+        try {
+            // TODO add your handling code here:
+            asignacion = new Asignacion();
+        } catch (SQLException ex) {
+            Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        this.setVisible(false);
+        asignacion.setVisible(true);
+        
+    }//GEN-LAST:event_btn_asigancion_estanteriaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -176,12 +302,16 @@ public class Menu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn_asigancion_estanteria;
     private javax.swing.JButton btn_close;
+    private javax.swing.JButton btn_inventario;
     private javax.swing.JButton btn_join_productos;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton btn_reportes;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     // End of variables declaration//GEN-END:variables
 
     public final void setProperties() {

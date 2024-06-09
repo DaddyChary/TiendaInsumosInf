@@ -28,13 +28,21 @@ public class Inventario {
     public int getId() {
         return id;
     }
-
+    
+    public String getIdString() {
+        return String.valueOf(id);
+    }
+    
     public void setId(int id) {
         this.id = id;
     }
 
     public int getId_producto_fk() {
         return id_producto_fk;
+    }
+    
+    public String getId_producto_String() {
+        return String.valueOf(id_producto_fk);
     }
 
     public void setId_producto_fk(int id_producto_fk) {
@@ -43,6 +51,10 @@ public class Inventario {
 
     public int getId_estanteria_fk() {
         return id_estanteria_fk;
+    }
+    
+    public String getId_estanteria_String() {
+        return String.valueOf(id_estanteria_fk);
     }
 
     public void setId_estanteria_fk(int id_estanteria_fk) {
@@ -53,6 +65,10 @@ public class Inventario {
         return cantidad;
     }
 
+    public String getCantidadString() {
+        return String.valueOf(cantidad);
+    }
+    
     public void setCantidad(int cantidad) {
         this.cantidad = cantidad;
     }

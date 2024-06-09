@@ -15,23 +15,23 @@ import model.Inventario;
  *
  * @author DaddyChary
  */
-public class DAOInventario implements DAO<Inventario>{
+public class DAOInventario implements DAO<Inventario> {
 
     private Conexion conn;
 
     public DAOInventario(Conexion conn) {
         this.conn = conn;
     }
-    
+
     @Override
     public void create(Inventario t) throws SQLException {
-        String sql = "INSERT INTO inventario (id, id_producto_fk, id_estanteria_fk, cantidad) VALUES (null, "+t.getId_producto_fk()+", "+ t.getId_estanteria_fk() +", "+ t.getCantidad() +")";
+        String sql = "INSERT INTO inventario (id, id_producto_fk, id_estanteria_fk, cantidad) VALUES (null, " + t.getId_producto_fk() + ", " + t.getId_estanteria_fk() + ", " + t.getCantidad() + ")";
         conn.execute(sql);
     }
 
     @Override
     public void update(Inventario t) throws SQLException {
-        String sql = "UPDATE inventario SET id_estanteria_fk = "+ t.getId_estanteria_fk() +", cantidad = "+ t.getCantidad() +" WHERE id = "+ t.getId() +"";
+        String sql = "UPDATE inventario SET id_estanteria_fk = " + t.getId_estanteria_fk() + ", cantidad = " + t.getCantidad() + " WHERE id = " + t.getId() + "";
         conn.execute(sql);
     }
 
@@ -72,5 +72,24 @@ public class DAOInventario implements DAO<Inventario>{
         conn.close();
         return listaInventario;
     }
-    
+
+    public List<Inventario> getAll(String dato) throws SQLException {
+        String sql = "SELECT * FROM inventario WHERE id LIKE '%" + dato + "%'";
+        //System.out.println(sql);
+        ResultSet rs = conn.execute(sql);
+
+        List<Inventario> listaInventario = new ArrayList<>();
+
+        while (rs.next()) {
+            Inventario inventario = new Inventario();
+            inventario.setId(rs.getInt("id"));
+            inventario.setId_producto_fk(rs.getInt("id_producto_fk"));
+            inventario.setId_estanteria_fk(rs.getInt("id_estanteria_fk"));
+            inventario.setCantidad(rs.getInt("cantidad"));
+            listaInventario.add(inventario);
+        }
+        conn.close();
+        return listaInventario;
+    }
+
 }

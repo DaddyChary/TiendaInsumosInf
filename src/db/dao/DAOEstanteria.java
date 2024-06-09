@@ -71,4 +71,34 @@ public class DAOEstanteria implements DAO<Estanteria> {
         return listaEstanterias;
     }
 
+    public List<Estanteria> getAll(String dato) throws SQLException {
+        String sql = "SELECT * FROM estanterias WHERE id LIKE '%" + dato + "%'";
+        //System.out.println(sql);
+        ResultSet rs = conn.execute(sql);
+
+        List<Estanteria> listaEstanterias = new ArrayList<>();
+
+        while (rs.next()) {
+            Estanteria estanteria = new Estanteria();
+            estanteria.setId(rs.getInt("id"));
+            estanteria.setId_tienda_fk(rs.getInt("id_tienda_fk"));
+            estanteria.setTiempo_descuento(rs.getInt("tiempo_descuento"));
+            listaEstanterias.add(estanteria);
+        }
+        conn.close();
+        return listaEstanterias;
+    }
+    
+    public List<String> getIdEstanterias() throws SQLException {
+        String sql = "SELECT DISTINCT id FROM estanterias ";
+        ResultSet rs = conn.execute(sql);
+        List<String> listaIdEstanterias = new ArrayList<>();
+        while (rs.next()) {
+            String idEstanteria = rs.getString("id");
+            listaIdEstanterias.add(idEstanteria);
+        }
+        conn.close();
+        return listaIdEstanterias;
+    }
+    
 }
