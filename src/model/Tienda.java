@@ -12,15 +12,13 @@ public class Tienda {
 
     private int id;
     private String nombre;
-    private int cantidadEstantes;
 
     public Tienda() {
     }
 
-    public Tienda(int id, String nombre, int cantidadEstantes) {
+    public Tienda(int id, String nombre) {
         this.id = id;
         this.nombre = nombre;
-        this.cantidadEstantes = cantidadEstantes;
     }
 
     public int getId() {
@@ -43,17 +41,9 @@ public class Tienda {
         this.nombre = nombre;
     }
 
-    public int getCantidadEstantes() {
-        return cantidadEstantes;
-    }
-
-    public void setCantidadEstantes(int cantidadEstantes) {
-        this.cantidadEstantes = cantidadEstantes;
-    }
-
     @Override
     public String toString() {
-        return "Tienda{" + "id=" + id + ", nombre=" + nombre + ", cantidadEstantes=" + cantidadEstantes + '}';
+        return "Tienda{" + "id=" + id + ", nombre=" + nombre + "}";
     }
 
 }

@@ -25,13 +25,13 @@ public class DAOTienda implements DAO<Tienda> {
 
     @Override
     public void create(Tienda t) throws SQLException {
-        String sql = "INSERT INTO tienda (id, nombre) VALUES (null, '" + t.getNombre() + "');";
+        String sql = "INSERT INTO tienda (id, nombre) VALUES (null, '" + t.getNombre() + "')";
         conn.execute(sql);
     }
 
     @Override
     public void update(Tienda t) throws SQLException {
-        String sql = "UPDATE tienda SET nombre = '" + t.getNombre() + "', cantidad_estanterias = " + t.getCantidadEstantes() + " WHERE id = " + t.getId() + "";
+        String sql = "UPDATE tienda SET nombre = '" + t.getNombre() + "' WHERE id = " + t.getId() + "";
         conn.execute(sql);
     }
 
@@ -49,7 +49,6 @@ public class DAOTienda implements DAO<Tienda> {
         if (rs.next()) {
             tienda.setId(rs.getInt("id"));
             tienda.setNombre(rs.getString("nombre"));
-            tienda.setCantidadEstantes(rs.getInt("cantidad_estanterias"));
         }
         conn.close();
         return tienda;
@@ -64,7 +63,6 @@ public class DAOTienda implements DAO<Tienda> {
             Tienda tienda = new Tienda();
             tienda.setId(rs.getInt("id"));
             tienda.setNombre(rs.getString("nombre"));
-            tienda.setCantidadEstantes(rs.getInt("cantidad_estanterias"));
             listaTienda.add(tienda);
         }
         conn.close();

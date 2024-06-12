@@ -231,19 +231,43 @@ public class Login extends javax.swing.JFrame {
     private void JoinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JoinActionPerformed
         // TODO add your handling code here:
         // Utiliza equals para comparar cadenas, no ==
-        if (USUARIO.equals(login_username.getText()) && PASSWORD.equals(login_password.getText())) {
-            JOptionPane.showConfirmDialog(null, "Sesión verificada con exito", "Aceptar", JOptionPane.DEFAULT_OPTION);
-            try {
-                menu = new Menu();
-            } catch (SQLException ex) {
-                Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        int id = 0;
+        Tienda tienda = new Tienda();
+        try {
+            List<Integer> tiendas = manager.getdTienda().getIdTiendaInt(); // Cambié a Integer suponiendo que los IDs son enteros.
+            //System.out.println(tiendas);
+            // Default value in case list is empty
+            if (!tiendas.isEmpty()) {
+                id = tiendas.get(0); // Obtiene el primer ID de la lista. Puedes cambiar esto según tus necesidades.
+                //System.out.println(id);
             }
-            this.setVisible(false);
-            menu.setVisible(true);
-        } else {
-            JOptionPane.showConfirmDialog(null, "Credenciales Incorrectas", "Aceptar", JOptionPane.DEFAULT_OPTION);
+        } catch (SQLException ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+        System.out.println(id);
+        if (!txt_shop_name.getText().isEmpty()) {
+            if (id > 0) {
+                if (USUARIO.equals(login_username.getText()) && PASSWORD.equals(login_password.getText())) {
+                    JOptionPane.showConfirmDialog(null, "Sesión verificada con exito", "Aceptar", JOptionPane.DEFAULT_OPTION);
+                    try {
+                        tienda.setId(id);
+                        tienda.setNombre(txt_shop_name.getText());
+                        manager.getdTienda().update(tienda);
+                        menu = new Menu();
+                    } catch (SQLException ex) {
+                        Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    this.setVisible(false);
+                    menu.setVisible(true);
+                } else {
+                    JOptionPane.showConfirmDialog(null, "Credenciales Incorrectas", "Aceptar", JOptionPane.DEFAULT_OPTION);
+                }
+            } else {
+                JOptionPane.showConfirmDialog(null, "Ingrese el nombre de la tienda", "Aceptar", JOptionPane.DEFAULT_OPTION);
+            }
+        } else {
+            JOptionPane.showConfirmDialog(null, "Ingrese el nombre de la tienda", "Aceptar", JOptionPane.DEFAULT_OPTION);
+        }
     }//GEN-LAST:event_JoinActionPerformed
 
     /**
@@ -309,18 +333,19 @@ public class Login extends javax.swing.JFrame {
     public void validarCampoTienda() throws SQLException {
         Tienda tienda = new Tienda();
         List<Integer> tiendas = manager.getdTienda().getIdTiendaInt(); // Cambié a Integer suponiendo que los IDs son enteros.
-        System.out.println(tiendas);
+        //System.out.println(tiendas);
         int id = 0; // Default value in case list is empty
         if (!tiendas.isEmpty()) {
             id = tiendas.get(0); // Obtiene el primer ID de la lista. Puedes cambiar esto según tus necesidades.
         }
-        System.out.println(id);
+        //System.out.println(id);
         if (id == 0) {
             txt_shop_name.enable(); // Habilitar el campo de nombre de tienda si el ID es 0
             tienda.setNombre(txt_shop_name.getText());
             manager.getdTienda().create(tienda);
         } else {
-            txt_shop_name.setText("Tienda Ingresada");
+            List<Tienda> tiendaName = manager.getdTienda().getAll();
+            txt_shop_name.setText(tiendaName.get(0).getNombre());
             txt_shop_name.disable();
         }
     }
