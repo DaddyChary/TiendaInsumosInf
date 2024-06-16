@@ -53,7 +53,7 @@ public class Login extends javax.swing.JFrame {
         login_username = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         login_password = new javax.swing.JPasswordField();
-        Join = new javax.swing.JButton();
+        Entrar = new javax.swing.JButton();
         txt_shop_name = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
 
@@ -93,14 +93,14 @@ public class Login extends javax.swing.JFrame {
         login_password.setForeground(new java.awt.Color(255, 153, 51));
         login_password.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
-        Join.setBackground(new java.awt.Color(4, 6, 36));
-        Join.setFont(new java.awt.Font("Segoe UI", 3, 24)); // NOI18N
-        Join.setForeground(new java.awt.Color(255, 153, 51));
-        Join.setText("Ingresar");
-        Join.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.magenta, java.awt.Color.cyan, java.awt.Color.yellow, java.awt.Color.orange));
-        Join.addActionListener(new java.awt.event.ActionListener() {
+        Entrar.setBackground(new java.awt.Color(4, 6, 36));
+        Entrar.setFont(new java.awt.Font("Segoe UI", 3, 24)); // NOI18N
+        Entrar.setForeground(new java.awt.Color(255, 153, 51));
+        Entrar.setText("Ingresar");
+        Entrar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.magenta, java.awt.Color.cyan, java.awt.Color.yellow, java.awt.Color.orange));
+        Entrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JoinActionPerformed(evt);
+                EntrarActionPerformed(evt);
             }
         });
 
@@ -118,7 +118,7 @@ public class Login extends javax.swing.JFrame {
                 .addContainerGap())
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(62, 62, 62)
-                .addComponent(Join, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(Entrar, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
@@ -133,7 +133,7 @@ public class Login extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(login_password, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
-                .addComponent(Join, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(Entrar, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -228,7 +228,7 @@ public class Login extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void JoinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JoinActionPerformed
+    private void EntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EntrarActionPerformed
         // TODO add your handling code here:
         // Utiliza equals para comparar cadenas, no ==
         int id = 0;
@@ -268,7 +268,7 @@ public class Login extends javax.swing.JFrame {
         } else {
             JOptionPane.showConfirmDialog(null, "Ingrese el nombre de la tienda", "Aceptar", JOptionPane.DEFAULT_OPTION);
         }
-    }//GEN-LAST:event_JoinActionPerformed
+    }//GEN-LAST:event_EntrarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -311,7 +311,7 @@ public class Login extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Join;
+    private javax.swing.JButton Entrar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

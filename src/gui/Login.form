@@ -224,7 +224,7 @@
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
-                              <Component id="Join" min="-2" pref="161" max="-2" attributes="0"/>
+                              <Component id="Entrar" min="-2" pref="161" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
                           </Group>
                       </Group>
@@ -241,7 +241,7 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="login_password" min="-2" pref="34" max="-2" attributes="0"/>
                               <EmptySpace pref="23" max="32767" attributes="0"/>
-                              <Component id="Join" min="-2" pref="58" max="-2" attributes="0"/>
+                              <Component id="Entrar" min="-2" pref="58" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -288,7 +288,7 @@
                         <Property name="horizontalAlignment" type="int" value="0"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JButton" name="Join">
+                    <Component class="javax.swing.JButton" name="Entrar">
                       <Properties>
                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="24" green="6" red="4" type="rgb"/>
@@ -312,7 +312,7 @@
                         </Property>
                       </Properties>
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JoinActionPerformed"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="EntrarActionPerformed"/>
                       </Events>
                     </Component>
                   </SubComponents>
