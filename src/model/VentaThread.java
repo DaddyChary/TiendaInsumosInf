@@ -55,7 +55,7 @@ public class VentaThread extends Thread {
                     // Crear una nueva venta
                     Venta venta = new Venta();
                     venta.setId(producto.getId());
-                    venta.setCantidad(1); // Venta de 1 unidad por cada producto
+                    venta.setCantidad(2); // Venta de 1 unidad por cada producto
                     venta.setTotalVenta(producto.getPrecio()); // Total de la venta basado en el precio del producto
 
                     // Guardar la venta en la base de datos o realizar cualquier acción necesaria

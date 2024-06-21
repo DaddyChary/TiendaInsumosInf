@@ -28,8 +28,8 @@ public class DAOVenta implements DAO<Venta> {
     public void create(Venta t) throws SQLException {
         String sql = "INSERT INTO ventas (id_producto_fk, cantidad, total) VALUES "
                 + "("+ t.getId() +", " + t.getCantidad() + ", " + t.getTotalVenta() + ");";
-        System.out.println(sql);
-        //conn.execute(sql);
+        //System.out.println(sql);
+        conn.execute(sql);
     }
 
     @Override
