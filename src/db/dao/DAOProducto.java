@@ -106,7 +106,6 @@ public class DAOProducto implements DAO<Producto> {
 
     public Producto getOneByName(String name) throws SQLException {
         String sql = "SELECT * FROM productos WHERE nombre = '" + name + "'";
-        System.out.println(sql);
         ResultSet rs = conn.execute(sql);
         Producto producto = new Producto();
         if (rs.next()) {
@@ -118,5 +117,23 @@ public class DAOProducto implements DAO<Producto> {
         conn.close();
         return producto;
     }
-    
+
+    public Producto getProductoById(int idProducto) throws SQLException {
+        Producto producto = new Producto();
+
+        // Query para obtener un producto por su ID
+        String sql = "SELECT id, nombre, precio FROM productos WHERE id = "+ idProducto +"";
+        System.out.println(sql);
+        ResultSet rs = conn.execute(sql);
+
+        // Si se encuentra un resultado, crear el objeto Producto
+        if (rs.next()) {
+            producto.setId(rs.getInt("id"));
+            producto.setNombre( rs.getString("nombre"));
+            producto.setPrecio(rs.getInt("precio"));
+        }
+
+        return producto;
+    }
+
 }

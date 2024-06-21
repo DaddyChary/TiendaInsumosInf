@@ -25,13 +25,13 @@ public class DAODetalleVenta implements DAO<DetalleVenta> {
 
     @Override
     public void create(DetalleVenta t) throws SQLException {
-        String sql = "INSERT INTO detalle_venta (id, id_venta_fk, id_producto_fk, fecha) VALUES (null, "+ t.getId_venta_fk() +", "+ t.getId_producto_fk()+")";
+        String sql = "INSERT INTO detalle_venta (id, id_venta_fk, id_producto_fk, fecha) VALUES (null, " + t.getId_venta_fk() + ", " + t.getId_producto_fk() + ")";
         conn.execute(sql);
     }
 
     @Override
     public void update(DetalleVenta t) throws SQLException {
-        String sql = "UPDATE detalle_venta SET id_venta_fk = "+ t.getId_producto_fk() +", id_producto_fk = "+ t.getId_producto_fk() +"";
+        String sql = "UPDATE detalle_venta SET id_venta_fk = " + t.getId_producto_fk() + ", id_producto_fk = " + t.getId_producto_fk() + "";
         conn.execute(sql);
     }
 
@@ -71,4 +71,31 @@ public class DAODetalleVenta implements DAO<DetalleVenta> {
         return listaDetalle_Venta;
     }
 
+    public DetalleVenta getAllMax() throws SQLException {
+        String sql = "SELECT p.nombre AS producto, SUM(dv.cantidad) AS total_vendido "
+                + "FROM detalle_venta dv JOIN productos p ON dv.id_producto_fk = p.id "
+                + "GROUP BY dv.id_producto_fk ORDER BY total_vendido DESC LIMIT 1;";
+        ResultSet rs = conn.execute(sql);
+        DetalleVenta detalle_venta = new DetalleVenta();
+        while (rs.next()) {
+            detalle_venta.setProducto(rs.getString("producto"));
+            detalle_venta.setTotal_vendido(rs.getInt("total_vendido"));
+        }
+        conn.close(); // Asegúrate de cerrar la conexión
+        return detalle_venta;
+    }
+
+    public DetalleVenta getAllMin() throws SQLException {
+        String sql = "SELECT p.nombre AS producto, MIN(dv.cantidad) AS total_vendido "
+                + "FROM detalle_venta dv JOIN productos p ON dv.id_producto_fk = p.id "
+                + "GROUP BY dv.id_producto_fk ORDER BY total_vendido ASC LIMIT 1;";
+        ResultSet rs = conn.execute(sql);
+        DetalleVenta detalle_venta = new DetalleVenta();
+        while (rs.next()) {
+            detalle_venta.setProducto(rs.getString("producto"));
+            detalle_venta.setTotal_vendido(rs.getInt("total_vendido"));
+        }
+        conn.close(); // Asegúrate de cerrar la conexión
+        return detalle_venta;
+    }
 }

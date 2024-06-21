@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package gui;
 
 import db.dao.DAOManager;
@@ -10,7 +6,10 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import model.Estanteria;
 import model.Tienda;
+import model.Venta;
+import model.VentaThread;
 
 /**
  *
@@ -25,6 +24,7 @@ public class Login extends javax.swing.JFrame {
     private final String USUARIO = "admin";
     private final String PASSWORD = "admin";
     private Menu menu;
+    private VentaThread ventaThread;
 
     public Login() throws SQLException {
         initComponents();
@@ -33,6 +33,8 @@ public class Login extends javax.swing.JFrame {
         validarCampoTienda();
         login_username.setText("admin");
         login_password.setText("admin");
+        ventaThread = new VentaThread();
+        ventaThread.start();
     }
 
     /**
@@ -244,7 +246,7 @@ public class Login extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
         }
-        System.out.println(id);
+        //System.out.println(id);
         if (!txt_shop_name.getText().isEmpty()) {
             if (id > 0) {
                 if (USUARIO.equals(login_username.getText()) && PASSWORD.equals(login_password.getText())) {
@@ -349,4 +351,13 @@ public class Login extends javax.swing.JFrame {
             txt_shop_name.disable();
         }
     }
+    
+    private void detenerHiloVentas() {
+        if (ventaThread != null) {
+            ventaThread.stopThread();
+        }
+    }
+
+    
+    
 }

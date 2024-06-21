@@ -241,8 +241,12 @@ public class Menu extends javax.swing.JFrame {
 
     private void btn_reportesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_reportesActionPerformed
         
-        // TODO add your handling code here:
-        informes = new GenerarInforme();
+        try {
+            // TODO add your handling code here:
+            informes = new GenerarInforme();
+        } catch (SQLException ex) {
+            Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
+        }
         this.setVisible(false);
         informes.setVisible(true);
         

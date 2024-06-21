@@ -4,9 +4,16 @@
  */
 package gui;
 
+import db.dao.DAOManager;
+import db.dao.DAOProducto;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import model.DetalleVenta;
+import model.Producto;
+import model.tm.TMProducto;
 
 /**
  *
@@ -17,11 +24,13 @@ public class GenerarInforme extends javax.swing.JFrame {
     /**
      * Creates new form GenerarInforme
      */
+    private DAOManager manager;
     private Menu menu;
 
-    public GenerarInforme() {
+    public GenerarInforme() throws SQLException {
         initComponents();
         setProperties();
+        this.manager = new DAOManager();
     }
 
     /**
@@ -36,8 +45,8 @@ public class GenerarInforme extends javax.swing.JFrame {
         jSlider1 = new javax.swing.JSlider();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btn_mas_vendido = new javax.swing.JButton();
+        btn_menos_vendido = new javax.swing.JButton();
         btn_atras = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -47,11 +56,21 @@ public class GenerarInforme extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(4, 6, 36));
 
-        jButton1.setText("jButton1");
-        jButton1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.blue, java.awt.Color.red, java.awt.Color.yellow, java.awt.Color.orange));
+        btn_mas_vendido.setText("Producto Mas Vendido");
+        btn_mas_vendido.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.blue, java.awt.Color.red, java.awt.Color.yellow, java.awt.Color.orange));
+        btn_mas_vendido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_mas_vendidoActionPerformed(evt);
+            }
+        });
 
-        jButton2.setText("jButton2");
-        jButton2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.blue, java.awt.Color.red, java.awt.Color.yellow, java.awt.Color.orange));
+        btn_menos_vendido.setText("Producto Menos Vendido");
+        btn_menos_vendido.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.blue, java.awt.Color.red, java.awt.Color.yellow, java.awt.Color.orange));
+        btn_menos_vendido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_menos_vendidoActionPerformed(evt);
+            }
+        });
 
         btn_atras.setText("Atras");
         btn_atras.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.blue, java.awt.Color.red, java.awt.Color.yellow, java.awt.Color.orange));
@@ -66,26 +85,27 @@ public class GenerarInforme extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(22, 22, 22))
-            .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btn_atras, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btn_mas_vendido, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_menos_vendido, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(15, 15, 15))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btn_atras)
-                .addGap(3, 3, 3)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(btn_atras))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(19, 19, 19)
+                        .addComponent(btn_mas_vendido)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btn_menos_vendido)
+                .addContainerGap(14, Short.MAX_VALUE))
         );
 
         jPanel3.setBackground(new java.awt.Color(4, 6, 36));
@@ -170,6 +190,25 @@ public class GenerarInforme extends javax.swing.JFrame {
         menu.setVisible(true);
     }//GEN-LAST:event_btn_atrasActionPerformed
 
+    private void btn_mas_vendidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_mas_vendidoActionPerformed
+        try {
+            // TODO add your handling code here:
+            actualizarTablaProductoMax();
+        } catch (SQLException ex) {
+            Logger.getLogger(GenerarInforme.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }//GEN-LAST:event_btn_mas_vendidoActionPerformed
+
+    private void btn_menos_vendidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_menos_vendidoActionPerformed
+        try {
+            // TODO add your handling code here:
+            actualizarTablaProductoMin();
+        } catch (SQLException ex) {
+            Logger.getLogger(GenerarInforme.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btn_menos_vendidoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -200,15 +239,19 @@ public class GenerarInforme extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new GenerarInforme().setVisible(true);
+                try {
+                    new GenerarInforme().setVisible(true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(GenerarInforme.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_atras;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton btn_mas_vendido;
+    private javax.swing.JButton btn_menos_vendido;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -220,6 +263,30 @@ public class GenerarInforme extends javax.swing.JFrame {
     public final void setProperties() {
         this.setTitle("Reportes");
         setLocationRelativeTo(null);
+    }
+
+    public void actualizarTablaProductoMax() throws SQLException {
+        DetalleVenta detalleVentaMax = manager.getdDetalle_Venta().getAllMax();
+        String nombreProducto = detalleVentaMax.getProducto();
+        Producto producto = manager.getdProducto().getOneByName(nombreProducto);
+        int idProducto = producto.getId();
+        Producto productoEncontrado = manager.getdProducto().getOne(idProducto);
+        List<Producto> listaProductos = new ArrayList<>();
+        listaProductos.add(productoEncontrado);
+        TMProducto tmProducto = new TMProducto(listaProductos);
+        tbl_generar_informe.setModel(tmProducto);
+    }
+    
+    public void actualizarTablaProductoMin() throws SQLException {
+        DetalleVenta detalleVentaMin = manager.getdDetalle_Venta().getAllMin();
+        String nombreProducto = detalleVentaMin.getProducto();
+        Producto producto = manager.getdProducto().getOneByName(nombreProducto);
+        int idProducto = producto.getId();
+        Producto productoEncontrado = manager.getdProducto().getOne(idProducto);
+        List<Producto> listaProductos = new ArrayList<>();
+        listaProductos.add(productoEncontrado);
+        TMProducto tmProducto = new TMProducto(listaProductos);
+        tbl_generar_informe.setModel(tmProducto);
     }
 
 }

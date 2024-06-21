@@ -92,4 +92,25 @@ public class DAOInventario implements DAO<Inventario> {
         return listaInventario;
     }
 
+    public List<Inventario> getProductosEnEstanteria(int idEstanteria) throws SQLException {
+        List<Inventario> inventario = new ArrayList<>();
+
+        // Query para obtener los productos en la estantería por su ID
+        String sql = "SELECT id, id_producto_fk, id_estanteria_fk, cantidad FROM inventario WHERE id_estanteria_fk = " + idEstanteria + "";
+
+        ResultSet rs = conn.execute(sql);
+
+        // Iterar sobre el resultado y crear objetos Inventario
+        while (rs.next()) {
+            int id = rs.getInt("id");
+            int idProducto = rs.getInt("id_producto_fk");
+            int cantidad = rs.getInt("cantidad");
+
+            // Crear objeto Inventario y añadirlo a la lista
+            Inventario item = new Inventario(id, idProducto, idEstanteria, cantidad);
+            inventario.add(item);
+        }
+        return inventario;
+
+    }
 }

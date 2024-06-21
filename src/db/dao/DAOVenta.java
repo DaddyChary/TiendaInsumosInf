@@ -26,9 +26,10 @@ public class DAOVenta implements DAO<Venta> {
 
     @Override
     public void create(Venta t) throws SQLException {
-        String sql = "INSERT INTO ventas (id, cantidad, total) VALUES "
-                + "(null, '" + t.getCantidad() + "', " + t.getTotalVenta() + ");";
-        conn.execute(sql);
+        String sql = "INSERT INTO ventas (id_producto_fk, cantidad, total) VALUES "
+                + "("+ t.getId() +", " + t.getCantidad() + ", " + t.getTotalVenta() + ");";
+        System.out.println(sql);
+        //conn.execute(sql);
     }
 
     @Override
