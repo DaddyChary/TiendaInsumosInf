@@ -3,11 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/C:/Users/DaddyChary/Documents/carrera/integracion_competencias_I/TiendaInsumosInf/src/gui/InventarioModule.java</file>
             <file>file:/C:/Users/DaddyChary/Documents/carrera/integracion_competencias_I/TiendaInsumosInf/src/gui/Login.java</file>
-            <file>file:/C:/Users/DaddyChary/Documents/carrera/integracion_competencias_I/TiendaInsumosInf/src/db/dao/DAOVenta.java</file>
-            <file>file:/C:/Users/DaddyChary/Documents/carrera/integracion_competencias_I/TiendaInsumosInf/src/db/tienda_insumos_inf.sql</file>
-            <file>file:/C:/Users/DaddyChary/Documents/carrera/integracion_competencias_I/TiendaInsumosInf/src/model/Venta.java</file>
-            <file>file:/C:/Users/DaddyChary/Documents/carrera/integracion_competencias_I/TiendaInsumosInf/src/model/VentaThread.java</file>
+            <file>file:/C:/Users/DaddyChary/Documents/carrera/integracion_competencias_I/TiendaInsumosInf/src/gui/Menu.java</file>
+            <file>file:/C:/Users/DaddyChary/Documents/carrera/integracion_competencias_I/TiendaInsumosInf/src/gui/GenerarInforme.java</file>
+            <file>file:/C:/Users/DaddyChary/Documents/carrera/integracion_competencias_I/TiendaInsumosInf/src/gui/Asignacion.java</file>
         </group>
     </open-files>
 </project-private>

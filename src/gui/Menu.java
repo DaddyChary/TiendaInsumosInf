@@ -4,9 +4,12 @@
  */
 package gui;
 
+import db.dao.DAOManager;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import model.Tienda;
 
 /**
  *
@@ -18,11 +21,16 @@ public class Menu extends javax.swing.JFrame {
     private InventarioModule inventario;
     private Asignacion asignacion;
     private GenerarInforme informes;
+    private DAOManager manager;
     
     
     public Menu() throws SQLException {
         initComponents();
         setProperties();
+        manager = new DAOManager();
+        List<Tienda> tiendaName = manager.getdTienda().getAll();
+        txt_tienda.setText("Shop: "+tiendaName.get(0).getNombre());
+        
 
     }
 
@@ -45,6 +53,7 @@ public class Menu extends javax.swing.JFrame {
         btn_reportes = new javax.swing.JButton();
         btn_asigancion_estanteria = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
+        txt_tienda = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -151,6 +160,12 @@ public class Menu extends javax.swing.JFrame {
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/logoProyectoNuevo.png"))); // NOI18N
 
+        txt_tienda.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        txt_tienda.setForeground(new java.awt.Color(255, 153, 51));
+        txt_tienda.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        txt_tienda.setText(":p");
+        txt_tienda.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.green, java.awt.Color.orange, java.awt.Color.blue, java.awt.Color.magenta));
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -162,16 +177,24 @@ public class Menu extends javax.swing.JFrame {
                         .addComponent(jLabel2)
                         .addGap(50, 50, 50))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btn_close, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(txt_tienda, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btn_close, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(21, 21, 21))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(32, 32, 32)
-                .addComponent(btn_close, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(32, 32, 32)
+                        .addComponent(btn_close, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(16, 16, 16)
+                        .addComponent(txt_tienda)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -316,6 +339,7 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JLabel txt_tienda;
     // End of variables declaration//GEN-END:variables
 
     public final void setProperties() {
